@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Banner from "@/components/Banner";
 import LoanCard from "@/components/LoanCard";
 import ContactForm from "@/components/ContactForm";
+import ToastDisplay from "@/components/redirect-display";
 
 export default async function Home() {
   return (
@@ -20,6 +21,7 @@ export default async function Home() {
       <ContactForm />
       <h1 className="mt-6 text-4xl">We served over 500+ Customers</h1>
       <div className="line"></div>
+      <ToastDisplay />
     </main>
   );
 }

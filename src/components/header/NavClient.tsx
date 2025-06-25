@@ -8,6 +8,7 @@ import { Loader } from "lucide-react";
 import styles from "@/styles/Nav.module.css";
 import AuthContext from "../AuthContext";
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 
 const NavClient = () => {
   const router = useRouter();
@@ -66,11 +67,11 @@ const NavClient = () => {
         </li>
         <li className="py-2 px-7 w-full text-black">
           {authChecking ? (
-            <Loader className="animate-spin" />
+            <Skeleton className="w-14 h-8" />
           ) : !user ? (
             <Link
               href="/login"
-              className="rounded py-2 px-1 border border-secondaryColor text-secondaryColor"
+              className="rounded p-1.5 border border-secondaryColor text-secondaryColor whitespace-nowrap"
             >
               log in
             </Link>

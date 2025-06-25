@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import Link from "next/link";
+import ToastDisplay from "@/components/redirect-display";
 
 const Login = () => {
   const { login }: any = useContext(AuthContext);
@@ -95,6 +96,7 @@ const Login = () => {
           </form>
         </CardContent>
       </Card>
+      <ToastDisplay />
     </div>
   );
 };
