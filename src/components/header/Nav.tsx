@@ -11,7 +11,7 @@ const Nav = () => {
             href="/"
             className="logo px-2 font-semibold flex justify-center flex-col items-center gap-0"
           >
-            <p className="logo px-2 font-semibold">trustGroupCU</p>
+            TrustGroupCU
           </Link>
         </span>
         <NavClient />
