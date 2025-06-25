@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+// import metadata from "libphonenumber-js/metadata.min";
 import { RegisterSchema, RegisterSchemaType } from "@/helpers/schema";
 import {
   Card,

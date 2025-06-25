@@ -1,5 +1,4 @@
 import { number, string, z } from "zod";
-import isMobilePhone from "validator/es/lib/isMobilePhone";
 
 export const LoginSchema = z.object({
   email: string()
