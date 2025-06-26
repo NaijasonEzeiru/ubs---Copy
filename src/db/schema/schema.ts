@@ -26,7 +26,7 @@ export const users = pgTable("person", {
   account_no: serial().primaryKey().notNull().unique(),
   trans: json().$type<
     {
-      accountName: string;
+      // accountName: string;
       type: string;
       amount: number;
       date: string | Date;

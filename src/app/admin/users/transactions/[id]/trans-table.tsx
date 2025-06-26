@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { TransactionsSchema } from "@/helpers/schema";
 import { z } from "zod";
-import { CalendarIcon, Plus, X } from "lucide-react";
+import { CalendarIcon, Loader, Plus, X } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -99,9 +99,11 @@ function useSkipper() {
 export default function CreateTransactions({
   trans,
   id,
+  getAllUsers,
 }: {
   trans: z.infer<typeof TransactionsSchema>[];
   id: number;
+  getAllUsers: () => Promise<void>;
 }) {
   const [data, setData] = useState<z.infer<typeof TransactionsSchema>[]>(trans);
 
@@ -127,8 +129,8 @@ export default function CreateTransactions({
 
   const columns: ColumnDef<z.infer<typeof TransactionsSchema>>[] = [
     {
-      accessorKey: "accountName",
-      header: () => <span>Account name</span>,
+      accessorKey: "description",
+      header: () => <span>Description</span>,
     },
     {
       accessorKey: "amount",
@@ -241,10 +243,6 @@ export default function CreateTransactions({
       },
     },
     {
-      accessorKey: "category",
-      header: "Category",
-    },
-    {
       header: "Delete",
       cell: ({ row }) => {
         return (
@@ -315,6 +313,7 @@ export default function CreateTransactions({
       });
       const response = await res.json();
       if (res.ok) {
+        getAllUsers();
         toast.success("Transactions updated successfully");
         router.back();
       } else {
@@ -379,7 +378,6 @@ export default function CreateTransactions({
             setData((oldData) => [
               ...oldData,
               {
-                accountName: "",
                 amount: 0,
                 date: "",
                 category: "",
@@ -395,14 +393,19 @@ export default function CreateTransactions({
         >
           <Plus />
         </Button>
-        <Button
-          type="submit"
-          // onClick={() => handleSubmit()}
-          disabled={loading}
-          className="mt-6 block"
-        >
-          Create transactions
-        </Button>
+        <div className="flex gap-3 relative top-10 items-center">
+          <Button type="button" variant="outline" onClick={() => router.back()}>
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            // onClick={() => handleSubmit()}
+            disabled={loading || data?.length == 0}
+          >
+            {loading && <Loader className="animate-spin mr-1" size={16} />}
+            Create transactions
+          </Button>
+        </div>
       </form>
     </>
   );

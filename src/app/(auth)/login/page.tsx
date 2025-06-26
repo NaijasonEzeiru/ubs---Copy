@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
+import Link from "next/link";
+
 import { LoginSchema, LoginSchemaType } from "@/helpers/schema";
 import AuthContext from "@/components/AuthContext";
 import {
@@ -15,12 +19,19 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Loader } from "lucide-react";
-import Link from "next/link";
 import ToastDisplay from "@/components/redirect-display";
+import { toast } from "sonner";
 
 const Login = () => {
-  const { login }: any = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      toast("You are already logged in");
+      router.push("/");
+    }
+  }, [user]);
 
   const {
     register,
@@ -41,7 +52,7 @@ const Login = () => {
         </CardHeader>
         <CardContent>
           <form
-            onSubmit={handleSubmit(login)}
+            onSubmit={handleSubmit(login!)}
             method="POST"
             className="grid gap-6"
           >

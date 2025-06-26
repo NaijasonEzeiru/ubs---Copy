@@ -9,7 +9,7 @@ export const PUT = async (
 ) => {
   const { isAdmin } = await request.json();
   try {
-    const account = +params.account_no - 1002784563;
+    const account = +(await params).account_no - 1002784563;
     console.log(account);
     const updatedAdmin = await db
       .update(users)

@@ -111,7 +111,6 @@ export const TransactionsSchema = z.object({
     .positive({ message: "Amount must be greater than 0" }),
   type: z.string(),
   date: z.string().or(z.date()),
-  accountName: string(),
   description: z.string(),
 });
 // export const UpdateBalSchema = z.object({

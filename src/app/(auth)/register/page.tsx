@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FC, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+
 // import metadata from "libphonenumber-js/metadata.min";
 import { RegisterSchema, RegisterSchemaType } from "@/helpers/schema";
 import {
@@ -21,15 +22,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import AuthContext from "@/components/AuthContext";
 
 const Register: FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string | undefined>(undefined);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   user && router.push('/');
-  //   setLoading(false);
-  // }, [user]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      toast("You are already logged in");
+      router.push("/");
+    }
+  }, [user]);
 
   const {
     register,
@@ -178,7 +184,9 @@ const Register: FC = () => {
               )}
             </div>
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting && <Loader className="animate-spin" />}
+              {isSubmitting && (
+                <Loader className="animate-spin mr-1" size={16} />
+              )}
               Create My Account
             </Button>
           </form>
