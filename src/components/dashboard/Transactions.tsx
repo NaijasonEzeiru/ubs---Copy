@@ -1,5 +1,7 @@
+"use client";
+
 import AuthContext from "@/components/AuthContext";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 // import { format } from 'date-fns';
 // import styles from "@/styles/Dashboard.module.css";
 import { DataTable } from "../table/data-table";

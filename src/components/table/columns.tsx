@@ -56,7 +56,7 @@ export const transactionsColumns: ColumnDef<
     cell: ({ row }) => {
       return (
         <div
-          className={`text-center ${
+          className={`${
             row.original.type == "Deposit"
               ? "text-green-700"
               : "text-orange-700"
