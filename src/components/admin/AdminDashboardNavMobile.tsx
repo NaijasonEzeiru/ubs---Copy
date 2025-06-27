@@ -49,8 +49,8 @@ const AdminDashboardNavMobile = () => {
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col">
           <nav className="grid gap-2 text-lg font-medium">
-            {/* <p className="text-2xl ml-7 mt-4 font-bold">{user?.fullName}</p> */}
             <Accordion type="single" collapsible className="w-full">
+              <p className="text-2xl ml-7 my-4 font-bold">{user?.fullName}</p>
               <Link
                 href="/admin"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"

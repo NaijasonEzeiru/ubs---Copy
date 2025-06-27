@@ -4,7 +4,7 @@ import NavClient from "./NavClient";
 
 const Nav = () => {
   return (
-    <nav className="w-full py-2 px-4 sm:px-8 md:px-24">
+    <nav className="w-full py-5 md:py-2 px-4 sm:px-8 md:px-24">
       <div className={styles.navbarItems}>
         <span className={styles.navbarLogo}>
           <Link

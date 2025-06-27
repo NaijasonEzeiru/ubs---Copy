@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex gap-6">
+      <div className="flex gap-6 flex-col sm:flex-row">
         <Card className="w-full border-b-primary py-5 px-6 border-b-[3px]">
           <p className="font-medium">Account Name</p>
           {!user ? (
