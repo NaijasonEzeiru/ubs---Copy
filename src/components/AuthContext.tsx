@@ -56,9 +56,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (res?.ok && data.data) {
       setUser(data.data);
       toast.success("You are now logged in", {
-        // description: `Welcome ${data?.fullName}`,
+        description: `Welcome ${data?.data?.fullName}`,
       });
-      if (user?.isAdmin) {
+      if (data?.data?.isAdmin) {
         router.push("/admin");
       } else {
         router.push("/dashboard");

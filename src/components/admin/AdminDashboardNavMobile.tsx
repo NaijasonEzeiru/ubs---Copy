@@ -27,16 +27,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../AuthContext";
 import { useRouter } from "next/navigation";
 
 const AdminDashboardNavMobile = () => {
   const { signout, user }: any = useContext(AuthContext);
+  const [openSheet, setOpenSheet] = useState(false);
   const router = useRouter();
   return (
     <>
-      <Sheet>
+      <Sheet onOpenChange={setOpenSheet} open={openSheet}>
         <SheetTrigger asChild>
           <Button
             variant="outline"
@@ -52,6 +53,7 @@ const AdminDashboardNavMobile = () => {
             <Accordion type="single" collapsible className="w-full">
               <p className="text-2xl ml-7 my-4 font-bold">{user?.fullName}</p>
               <Link
+                onClick={() => setOpenSheet(false)}
                 href="/admin"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
@@ -59,6 +61,7 @@ const AdminDashboardNavMobile = () => {
                 Dashboard
               </Link>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Users"
                 content={{
                   "Add New": "/admin/users/create",
@@ -72,6 +75,7 @@ const AdminDashboardNavMobile = () => {
               </DropdownMobile>
               <Link
                 href="#"
+                onClick={() => setOpenSheet(false)}
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 {/* <Send className="h-4 w-4" /> */}
@@ -80,6 +84,7 @@ const AdminDashboardNavMobile = () => {
               </Link>
               <Link
                 href="#"
+                onClick={() => setOpenSheet(false)}
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 {/* <Package className="h-4 w-4" /> */}
@@ -87,6 +92,7 @@ const AdminDashboardNavMobile = () => {
                 Wire Transfer
               </Link>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Deposit"
                 content={{
                   "Deposit Request": "#",
@@ -97,6 +103,7 @@ const AdminDashboardNavMobile = () => {
                 <FaPlusCircle />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Withdraw"
                 content={{
                   "Withdraw Request": "#",
@@ -107,6 +114,7 @@ const AdminDashboardNavMobile = () => {
                 <ArrowRight className="h-4 w-4" />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Loans Management"
                 content={{
                   "All Loans": "#",
@@ -119,6 +127,7 @@ const AdminDashboardNavMobile = () => {
                 <RiMoneyDollarBoxFill />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Fixed Deposit"
                 content={{
                   "All New": "#",
@@ -129,12 +138,14 @@ const AdminDashboardNavMobile = () => {
                 <Vault className="h-4 w-4" />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Gift Cards"
                 content={{ "Gift Cards": "#", "Used Gift Cards": "#" }}
               >
                 <Gift className="h-4 w-4" />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Support Tickets"
                 content={{
                   "Active Tickets": "#",
@@ -145,6 +156,7 @@ const AdminDashboardNavMobile = () => {
                 <Ticket className="h-4 w-4" />
               </DropdownMobile>
               <Link
+                onClick={() => setOpenSheet(false)}
                 href="#"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >

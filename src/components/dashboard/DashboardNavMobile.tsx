@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { MdSpaceDashboard, MdSend } from "react-icons/md";
 import {
@@ -32,10 +32,12 @@ import {
 
 const DashboardNavMobile = () => {
   const { signout, user } = useContext(AuthContext);
+  const [openSheet, setOpenSheet] = useState(false);
+
   const router = useRouter();
   return (
     <>
-      <Sheet>
+      <Sheet onOpenChange={setOpenSheet} open={openSheet}>
         <SheetTrigger asChild>
           <Button
             variant="outline"
@@ -52,6 +54,7 @@ const DashboardNavMobile = () => {
               <p className="text-2xl ml-7 my-4 font-bold">{user?.fullName}</p>
               <Link
                 href="/dashboard"
+                onClick={() => setOpenSheet(false)}
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <MdSpaceDashboard />
@@ -63,6 +66,7 @@ const DashboardNavMobile = () => {
                     ? "/dashboard/send-money"
                     : "/dashboard/verify-page"
                 }
+                onClick={() => setOpenSheet(false)}
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <MdSend />
@@ -70,6 +74,7 @@ const DashboardNavMobile = () => {
               </Link>
               <Link
                 href={user?.verified ? "#" : "/dashboard/verify-page"}
+                onClick={() => setOpenSheet(false)}
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <FaExchangeAlt />
@@ -81,6 +86,7 @@ const DashboardNavMobile = () => {
                     ? "/dashboard/send-money"
                     : "/dashboard/verify-page"
                 }
+                onClick={() => setOpenSheet(false)}
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <FaMoneyCheckAlt />
@@ -100,11 +106,13 @@ const DashboardNavMobile = () => {
 			</div> */}
               <DropdownMobile
                 top="Payment Request"
+                click={setOpenSheet}
                 content={{ "New Request": "#", "All Requests": "#" }}
               >
                 <FaRegCreditCard />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Deposit Money"
                 content={{
                   "Automatic Deposit": "#",
@@ -119,6 +127,7 @@ const DashboardNavMobile = () => {
                 Withdraw Money
               </div>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Loans"
                 content={{
                   "Apply New Loan": "#",
@@ -129,12 +138,14 @@ const DashboardNavMobile = () => {
                 <RiMoneyDollarBoxFill />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Fixed Deposit"
                 content={{ "Apply New FRD": "#", "FDR History": "#" }}
               >
                 <FaUnlockAlt />
               </DropdownMobile>
               <DropdownMobile
+                click={setOpenSheet}
                 top="Support Tickets"
                 content={{
                   "Create New Ticket": "#",
@@ -146,6 +157,7 @@ const DashboardNavMobile = () => {
                 <BiSupport />
               </DropdownMobile>
               <Link
+                onClick={() => setOpenSheet(false)}
                 href="/dashboard/transactions"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
